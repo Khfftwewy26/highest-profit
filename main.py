@@ -30,7 +30,6 @@ def readValidData(filename):
 
         finalValidList.sort(key = lambda x: (float(x[4])), reverse= True)
 
-
 def createJSON(validFinalData, jsonFilePath):
     data = []
 
@@ -51,10 +50,16 @@ def createJSON(validFinalData, jsonFilePath):
     with open(jsonFilePath, 'w',encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(data, indent=4))
 
+def getJsonValues(jsonFile):
+    with open(jsonFile) as dataFile:
+        data = json.load(dataFile)
+        for i in range(21):
+            print(data[i])
 
 # Calls the read function
 if __name__ == '__main__':
     readData('profitData.csv')
     readValidData('profitData.csv')
     createJSON('profitData.csv','data2.json')
+    getJsonValues('data2.json')
 
